@@ -1,22 +1,25 @@
 import java.util.ArrayList;
 
 public class Student {
-  private String name; 
+  private String name;
   private int ID;
   private String year;
   private int volunteeringHours;
-  private ArrayList<Classroom[]>classList;
+  private ArrayList<Classroom> classList;
 
+  public Student(){
+
+  }
   public Student(String name, int  ID, String year, int volunteeringHours){
     this.name = name;
     this.ID = ID;
     this.year = year;
     this.volunteeringHours = volunteeringHours;
-    classList=new ArrayList<Classroom[]>();
+    classList=new ArrayList<Classroom>();
   }
 
   public String getName() {
-    return name; 
+    return name;
   }
 
   public int getID(){
@@ -31,7 +34,7 @@ public class Student {
     return volunteeringHours;
   }
 
-  public ArrayList<Classroom[]> getGradeList(){
+  public ArrayList<Classroom> getGradeList(){
     return classList;
   }
 
@@ -40,7 +43,7 @@ public class Student {
     for (Classroom class1: classList) {
       sum += class1.getGrade();
     }
-    return sum / gradeList.size();
+    return sum / classList.size();
   }
 
   public void addHours(int hour){
@@ -51,3 +54,14 @@ public class Student {
     classList.add(class1);
   }
 }
+
+
+
+
+
+
+
+
+
+
+
