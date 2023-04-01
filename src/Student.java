@@ -7,9 +7,8 @@ public class Student {
   private int volunteeringHours;
   private ArrayList<Classroom> classList;
 
-  public Student(){
 
-  }
+  // Student constructor
   public Student(String name, int  ID, String year, int volunteeringHours){
     this.name = name;
     this.ID = ID;
@@ -18,50 +17,44 @@ public class Student {
     classList=new ArrayList<Classroom>();
   }
 
+  // returns name
   public String getName() {
     return name;
   }
 
+  // returns ID
   public int getID(){
     return ID;
   }
 
+  // returns year
   public String getYear(){
     return year;
   }
 
+  // returns hours
   public int getHours(){
     return volunteeringHours;
   }
 
+  // returns classList
   public ArrayList<Classroom> getGradeList(){
     return classList;
   }
 
+  // calculates the average from all classes and returns the average
   public double calculateAverage() {
     double sum = 0;
     for (Classroom class1: classList) {
       sum += class1.getGrade();
     }
-    return sum / classList.size();
-  }
-
-  public void addHours(int hour){
-    volunteeringHours+=hour;
+    return Math.round(sum / classList.size());
   }
 
   public void addClass(Classroom class1){
     classList.add(class1);
   }
 }
-
-
-
-
-
-
-
-
 
 
 
