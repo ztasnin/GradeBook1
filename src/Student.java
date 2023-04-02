@@ -42,6 +42,9 @@ public class Student {
     return classList;
   }
 
+  public void addClass(Classroom class1){
+    classList.add(class1);
+  }
   // calculates the average from all classes and returns the average
   public double calculateAverage() {
     double sum = 0;
@@ -49,10 +52,6 @@ public class Student {
       sum += class1.getGrade();
     }
     return Math.round(sum / classList.size());
-  }
-
-  public void addClass(Classroom class1){
-    classList.add(class1);
   }
 }
 

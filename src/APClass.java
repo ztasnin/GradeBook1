@@ -25,7 +25,7 @@ public class APClass extends Classroom {
   public String getGradeString() {
     double dou = Double.parseDouble(super.getGradeString());
     dou = (int)(dou * 1.1*100)/100.00;
-    return Double.toString(dou) + "\n" + "AP Score: " + getAPScore();
+    return Double.toString(dou) + ",   AP Score: " + getAPScore();
 
   }
 }

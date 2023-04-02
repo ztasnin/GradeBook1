@@ -18,7 +18,7 @@ public class GradeBook {
 
   //Starts program
   public void start() {
-   System.out.println("Welcome to PupilPath Jr!");
+    System.out.println("Welcome to PupilPath Jr!");
     printMenu();
     System.out.println("Enter your choice: ");
     int choice = scan.nextInt();
@@ -38,6 +38,7 @@ public class GradeBook {
         scan.nextLine();
       } else if (choice == 4) {
         addGrade();
+        printMenu();
         System.out.println("Enter your choice: ");
         choice = scan.nextInt();
         scan.nextLine();
@@ -70,7 +71,12 @@ public class GradeBook {
     for (Student student : students) {
       sum += student.calculateAverage();
     }
-    double average = sum / students.size();
+    double average;
+    if(students.size() == 0){
+      average = 0;
+    } else {
+      average = sum/students.size();
+    }
     average = ((int) (average * 100)) / 100;
     System.out.println("Class Average: " + average);
   }
@@ -83,11 +89,14 @@ public class GradeBook {
     int ID = scan.nextInt();
     for (int i = 0; i < students.size(); i++) {
       if (students.get(i).getID() == ID) {
-        String[][] TDarr = new String[students.get(i).getGradeList().size()][2];
+        String[][] TDarr = new String[students.get(i).getGradeList().size()][3];
         for (int y = 0; y < students.get(i).getGradeList().size(); y++) {
           TDarr[y][0] = students.get(i).getGradeList().get(y).getClassName();
+          TDarr[y][0] = TDarr[y][0].substring(0,1).toUpperCase() + TDarr[y][0].substring(1);
           TDarr[y][1] = students.get(i).getGradeList().get(y).getGradeString();
+          TDarr[y][2] = passOrFail(students.get(i).getGradeList().get(y).getGrade());
         }
+        System.out.println();
         System.out.println(PURPLE + "Student Name: " + RESET + students.get(i).getName().toUpperCase());
         System.out.println(PURPLE + "Student ID: " + RESET + students.get(i).getID());
         System.out.println(PURPLE + "Student Year: " + RESET + students.get(i).getYear());
@@ -95,8 +104,9 @@ public class GradeBook {
         System.out.println(PURPLE + "Student's Number of Classes: " + RESET + students.get(i).getGradeList().size());
         for (int row = 0; row < TDarr.length; row++) {
           for (int col = 0; col < TDarr[0].length; col++) {
-            System.out.println(TDarr[row][col]);
+            System.out.print(TDarr[row][col] + "   ");
           }
+          System.out.println();
         }
       }
     }
@@ -156,6 +166,14 @@ public class GradeBook {
   }
   private double round(double num){
     return (int)(num*100)/100;
+  }
+
+  private String passOrFail(double grade){
+    if(grade<65){
+      return "\033[1;31m" + "FAIL" + RESET;
+    } else {
+      return GREEN + "PASS" + RESET;
+    }
   }
 }
 
